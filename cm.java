@@ -64,9 +64,9 @@ public class cm {
         while (true) {
             System.out.print("Status magang (Diterima/Menunggu/Ditolak): ");
             status = sc.nextLine().trim();
-            if (status.equalsIgnoreCase("Diterima") || 
-                status.equalsIgnoreCase("Menunggu") || 
-                status.equalsIgnoreCase("Ditolak")) {
+            if (status.equalsIgnoreCase("Diterima") ||
+                    status.equalsIgnoreCase("Menunggu") ||
+                    status.equalsIgnoreCase("Ditolak")) {
                 break;
             } else {
                 System.out.println("Status hanya boleh: Diterima, Menunggu, atau Ditolak.");
@@ -83,5 +83,46 @@ public class cm {
 
         jumlahData++;
         System.out.println("Data pendaftar magang berhasil ditambahkan. Total pendaftar: " + jumlahData);
+    }
+
+    // Potong teks jika terlalu panjang
+    static String potongTeks(String teks, int max) {
+        if (teks.length() <= max) {
+            return teks;
+        } else {
+            return teks.substring(0, max - 3) + "...";
+        }
+    }
+
+    // Menu 2: Tampilkan Semua Data
+    static void tampilData() {
+        System.out.println("\n=== Daftar Semua Pendaftar Magang ===");
+
+        if (jumlahData == 0) {
+            System.out.println("Belum ada pendaftar.");
+            return;
+        }
+
+        // Header
+        System.out.printf("%-3s %-20s %-15s %-15s %-15s %-10s %-10s\n",
+                "No", "Nama", "NIM", "Prodi", "Perusahaan", "Semester", "Status");
+
+        for (int i = 0; i < jumlahData; i++) {
+            String nama = data[i][0];
+            String nim = data[i][1];
+            String prodi = potongTeks(data[i][2], 15); // Max 15 karakter
+            String perusahaan = potongTeks(data[i][3], 15); // Max 15 karakter
+            String semester = data[i][4];
+            String status = data[i][5];
+
+            System.out.printf("%-3d %-20s %-15s %-15s %-15s %-10s %-10s\n",
+                    (i + 1),
+                    nama,
+                    nim,
+                    prodi,
+                    perusahaan,
+                    semester,
+                    status);
+        }
     }
 }
