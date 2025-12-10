@@ -28,6 +28,8 @@ public class cm {
                     break;
                 case 3:
                     cariProgramStudi();
+                case 4:
+                    hitungPerStatus(); 
                 default:
                     System.out.println("Pilihan tidak valid! Silakan pilih 1-5.");
             }
@@ -170,6 +172,33 @@ public class cm {
         if (!ditemukan) {
             System.out.println("Tidak ada pendaftar dengan Program Studi tersebut.");
         }
+    }
+
+        // Menu 4: Hitung Jumlah per Status
+    static void hitungPerStatus() {
+        if (jumlahData == 0) {
+            System.out.println("Belum ada pendaftar.");
+            return;
+        }
+
+        int diterima = 0, menunggu = 0, ditolak = 0;
+
+        for (int i = 0; i < jumlahData; i++) {
+            String status = data[i][5];
+            if (status.equalsIgnoreCase("Diterima")) {
+                diterima++;
+            } else if (status.equalsIgnoreCase("Menunggu")) {
+                menunggu++;
+            } else if (status.equalsIgnoreCase("Ditolak")) {
+                ditolak++;
+            }
+        }
+
+        System.out.println("\n=== Jumlah Pendaftar untuk Setiap Status ===");
+        System.out.println("Diterima : " + diterima);
+        System.out.println("Menunggu : " + menunggu);
+        System.out.println("Ditolak  : " + ditolak);
+        System.out.println("Total pendaftar: " + jumlahData);
     }
 
 }
