@@ -23,6 +23,11 @@ public class cm {
                 case 1:
                     tambahData();
                     break;
+                case 2:
+                    tampilData();
+                    break;
+                case 3:
+                    cariProgramStudi();
                 default:
                     System.out.println("Pilihan tidak valid! Silakan pilih 1-5.");
             }
@@ -125,4 +130,46 @@ public class cm {
                     status);
         }
     }
+
+    // Menu 3: Cari berdasarkan Program Studi
+    static void cariProgramStudi() {
+        if (jumlahData == 0) {
+            System.out.println("Belum ada data.");
+            return;
+        }
+
+        System.out.print("Masukkan Program Studi yang dicari: ");
+        String cariProdi = sc.nextLine().trim();
+
+        System.out.println("\n=== Hasil Pencarian berdasarkan Program Studi ===");
+        System.out.printf("%-3s %-20s %-15s %-15s %-15s %-10s %-10s\n",
+                "No", "Nama", "NIM", "Prodi", "Perusahaan", "Semester", "Status");
+
+        boolean ditemukan = false;
+        for (int i = 0; i < jumlahData; i++) {
+            if (data[i][2].toLowerCase().contains(cariProdi.toLowerCase())) {
+                ditemukan = true;
+                String nama = data[i][0];
+                String nim = data[i][1];
+                String prodi = potongTeks(data[i][2], 15);
+                String perusahaan = potongTeks(data[i][3], 15);
+                String semester = data[i][4];
+                String status = data[i][5];
+
+                System.out.printf("%-3d %-20s %-15s %-15s %-15s %-10s %-10s\n",
+                        (i + 1),
+                        nama,
+                        nim,
+                        prodi,
+                        perusahaan,
+                        semester,
+                        status);
+            }
+        }
+
+        if (!ditemukan) {
+            System.out.println("Tidak ada pendaftar dengan Program Studi tersebut.");
+        }
+    }
+
 }
