@@ -28,8 +28,10 @@ public class cm {
                     break;
                 case 3:
                     cariProgramStudi();
+                    break;
                 case 4:
                     hitungPerStatus(); 
+                    break;
                 default:
                     System.out.println("Pilihan tidak valid! Silakan pilih 1-5.");
             }
